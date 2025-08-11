@@ -1,4 +1,4 @@
-# Revisión Técnica – Validador OCR
+# Revisión Técnica – Validador de revicion tecnica
 
 Valida documentos de revisión técnica a partir de archivos PDF e imágenes (JPG/PNG) mediante OCR. Extrae texto y verifica la presencia de: placa patente chilena, fecha, resultado (APROBADO/RECHAZADO), centro/planta, observaciones y firma electrónica. Devuelve un veredicto y una puntuación.
 
