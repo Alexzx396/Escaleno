@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.cache/
+
+uploads/
+backend/uploads/
+backend/temp/
+
+backend/.env
+frontend/.env
+
