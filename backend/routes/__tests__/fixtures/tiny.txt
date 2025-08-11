@@ -1,0 +1,1 @@
+Nota: estamos mockeando el controlador para no invocar Tesseract/Poppler en estos tests. Si querés pruebas de integración reales, podemos armar otro spec que no mockee, pero tardará más y requiere binarios instalados.

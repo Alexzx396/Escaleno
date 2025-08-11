@@ -6,7 +6,7 @@ Valida documentos de revisión técnica a partir de archivos PDF e imágenes (JP
 
 - Node.js 18+ y npm
 - Poppler (para convertir PDF a imágenes)
-- tesseract.js (se usa vía WASM; no requiere binario del sistema)
+- tesseract.js (se usa vía WASM)
 
 ## Estructura
 
@@ -102,18 +102,36 @@ Ejemplo de respuesta:
 ## Funcionamiento
 
 PDF:
-1. Se intenta extraer texto embebido con `pdf-parse`.
-2. Si no hay texto, se convierte la(s) página(s) con Poppler (450 DPI), se preprocesa con `sharp` y se aplica OCR con `tesseract.js`.
+1. Si no hay texto, se convierte la(s) página(s) con Poppler (450 DPI), se preprocesa con `sharp` y se aplica OCR con `tesseract.js`.
 
 Imagen:
 - OCR directo con `tesseract.js` (configurable en `utils/ocr.js`).
 
 Validación (`utils/document-validator.js`):
 - Normaliza el texto (mayúsculas y sin tildes).
-- Busca patentes chilenas en formatos `AA1234` o `AAAA12` (ver `utils/plate-utils.js`).
-- Detecta fechas en formato “DD DE MES DE YYYY”, “DD MES YYYY”, además de `YYYY-MM-DD`, `DD/MM/YYYY`, `DD-MM-YYYY`.
+- Busca patentes chilenas en formatos (ver `utils/plate-utils.js`).
 - Detecta palabras clave: APROBADO/RECHAZADO, centro/planta, observaciones, firma electrónica.
-- Penaliza artefactos extraños (símbolos repetidos).
 - Puntuación: suma de [patente, fecha, resultado, centro, observaciones, firma]. Se considera válido con puntuación >= 4 y sin artefactos.
 
+## Pruebas con Jest (Backend)
+Se incluyen pruebas unitarias con Jest para cubrir la lógica principal del validador.
 
+Instalación (dev)
+
+cd backend
+npm i -D jest
+
+## Scripts en backend/package.json
+
+{
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:cov": "jest --coverage --runInBand"
+  }
+}
+
+## Ejecución
+
+cd backend
+npm test
+npm run test:cov

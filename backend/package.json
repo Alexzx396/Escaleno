@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand",
+    "test:cov": "jest --coverage --runInBand"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +19,9 @@
     "pdf-poppler": "^0.2.1",
     "sharp": "^0.34.3",
     "tesseract.js": "^6.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.0.5",
+    "supertest": "^7.1.4"
   }
 }
